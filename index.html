@@ -1,7 +1,180 @@
 <!DOCTYPE html>
-<html>
-  <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOTLINK PROTOCOL — Operator Toolkit (Pre‑Release)</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #0d1b2a;
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.85;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #0d1b2a;
+            margin-top: 50px;
+            border-left: 4px solid #1b263b;
+            padding-left: 12px;
+        }
+
+        pre {
+            background: #e8ecf2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #d0d7e1;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 30px;
+            text-align: center;
+            background: #0d1b2a;
+            color: #ffffff;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
     <h1>BOTLINK PROTOCOL</h1>
-    <p>Operator Preview Online</p>
-  </body>
+    <p>Operator Toolkit (Pre‑Release) — Autonomous Systems Research Group</p>
+</header>
+
+<div class="container">
+
+    <h2>Welcome, Operator</h2>
+    <p>
+        BOTLINK PROTOCOL is an experimental control architecture designed to unify motion,
+        behavior, perception, and operator intent into a single robotics interface layer.
+        This preview is part of an internal R&amp;D initiative exploring next‑generation
+        operator‑centric frameworks for human‑scale robotic systems.
+    </p>
+
+    <p><strong>Access Level:</strong> Operator Preview<br>
+       <strong>Build:</strong> 0.0.1‑prealpha<br>
+       <strong>Status:</strong> Evaluation Only</p>
+
+    <h2>What Is BOTLINK PROTOCOL?</h2>
+    <p>
+        BOTLINK PROTOCOL proposes a unified approach to humanoid robotics control — one where
+        motion, safety, autonomy, and personality operate as coordinated layers of a single
+        operator‑driven system. This toolkit outlines a speculative architecture for future
+        robotics development.
+    </p>
+
+    <h2>Core Modules</h2>
+
+    <h3>MotionGraph Engine</h3>
+    <p>Structured motion synthesis built around reusable primitives and dynamic blending.</p>
+
+    <h3>PersonaLayer</h3>
+    <p>Behavioral modulation shaping how tasks are executed, including affect profiles and timing.</p>
+
+    <h3>SensorMesh</h3>
+    <p>Unified perception bus for routing and normalizing multi‑sensor data.</p>
+
+    <h3>ReflexPack</h3>
+    <p>Safety‑first micro‑loop system for immediate corrective action.</p>
+
+    <h3>ScriptForge DSL</h3>
+    <p>Conceptual hybrid scripting language for describing behaviors at a human‑readable level.</p>
+
+    <h3>Sandbox Autonomy</h3>
+    <p>Constrained autonomy envelope defined by the operator.</p>
+
+    <h3>MemorySeeds</h3>
+    <p>Persistent preference layer for long‑term operator interaction patterns.</p>
+
+    <h2>Example ScriptForge Behaviors</h2>
+
+    <h3>Visitor Greeting</h3>
+<pre><code>behavior GreetVisitor:
+  trigger: face.detected AND zone == "entry"
+  style: persona("NeutralHost", warmth = 0.7)
+
+  steps:
+    - motion.look_at(face)
+    - motion.walk_to(distance = 1.2m)
+    - speak("Welcome. Would you like to resume your previous task?")
+    - if response == "yes":
+        task.resume("previous")
+      else:
+        task.offer_options()
+</code></pre>
+
+    <h3>Assisted Lift</h3>
+<pre><code>behavior AssistLift:
+  trigger: voice.command MATCHES "help me lift this"
+
+  constraints:
+    max_force = 0.6
+    safe_zone = "workbench"
+    require_two_confirmations = true
+
+  steps:
+    - ReflexPack.enable("joint_guard", "grip_monitor")
+    - motion.align_with(operator)
+    - speak("Confirm lifting assistance in the workbench area.")
+    - if confirm_twice():
+        motion.sync_lift(operator_pose, target)
+        motion.step_back()
+    - ReflexPack.disable_all()
+</code></pre>
+
+    <h2>Safety &amp; Reality Notice</h2>
+    <p>
+        BOTLINK PROTOCOL is a non‑functional conceptual framework. It does not interface with
+        real hardware and is not intended for deployment. Operators working with physical
+        robotic systems must follow certified safety procedures and manufacturer guidelines.
+    </p>
+
+    <h2>Roadmap (Hypothetical)</h2>
+    <ul>
+        <li>v0.1 — Public spec draft</li>
+        <li>v0.2 — Reference simulation environment</li>
+        <li>v0.3 — ScriptForge interpreter prototype</li>
+        <li>v0.4 — Open governance proposal</li>
+        <li>v1.0 — Operator Toolkit (conceptual release)</li>
+    </ul>
+
+</div>
+
+<footer>
+    BOTLINK PROTOCOL — Operator Preview Program<br>
+    Autonomous Systems Research Group
+</footer>
+
+</body>
 </html>
