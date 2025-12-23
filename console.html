@@ -22,17 +22,20 @@
 
         .line {
             margin: 8px 0;
-            opacity: 0;
-            animation: fadeIn 0.6s forwards;
         }
 
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        #input-line {
+            margin-top: 20px;
         }
 
-        a {
+        #cmd {
+            background: transparent;
+            border: none;
             color: #00ffcc;
-            text-decoration: underline;
+            font-family: inherit;
+            font-size: 1rem;
+            width: 80%;
+            outline: none;
         }
 
         .blink {
@@ -42,43 +45,111 @@
         @keyframes blink {
             50% { opacity: 0; }
         }
+
+        a {
+            color: #00ffcc;
+        }
     </style>
 </head>
 
 <body>
-<div class="screen">
+<div class="screen" id="terminal">
 
-    <div class="line" style="animation-delay: 0.2s">> INITIALIZING BOTLINK PROTOCOL [v0.0.1-prealpha]</div>
-    <div class="line" style="animation-delay: 0.6s">> Establishing secure operator channel...</div>
-    <div class="line" style="animation-delay: 1.0s">> Handshake: OK</div>
-    <div class="line" style="animation-delay: 1.4s">> Authentication: BYPASS (Preview Mode)</div>
-    <div class="line" style="animation-delay: 1.8s">> Loading subsystems...</div>
+    <!-- Boot sequence -->
+    <div class="line">> INITIALIZING BOTLINK PROTOCOL [v0.0.1-prealpha]</div>
+    <div class="line">> Establishing secure operator channel...</div>
+    <div class="line">> Handshake: OK</div>
+    <div class="line">> Authentication: BYPASS (Preview Mode)</div>
+    <div class="line">> Loading subsystems...</div>
+    <div class="line">   - MotionGraph Engine: READY</div>
+    <div class="line">   - PersonaLayer: READY</div>
+    <div class="line">   - SensorMesh: READY</div>
+    <div class="line">   - ReflexPack: READY</div>
+    <div class="line">> Operator console online.</div>
+    <div class="line">> Status: SANDBOX MODE (No hardware connected)</div>
 
-    <div class="line" style="animation-delay: 2.4s">   - MotionGraph Engine: READY</div>
-    <div class="line" style="animation-delay: 2.8s">   - PersonaLayer: READY</div>
-    <div class="line" style="animation-delay: 3.2s">   - SensorMesh: READY</div>
-    <div class="line" style="animation-delay: 3.6s">   - ReflexPack: READY</div>
+    <div class="line">> Type 'help' for available commands.</div>
 
-    <div class="line" style="animation-delay: 4.2s">> Operator console online.</div>
-    <div class="line" style="animation-delay: 4.6s">> Status: SANDBOX MODE (No hardware connected)</div>
-
-    <div class="line" style="animation-delay: 5.2s">
-        > Available Commands:
-        <br>   help — list commands
-        <br>   status — system overview
-        <br>   persona — active behavioral profile
-        <br>   uplink — return to main site
-    </div>
-
-    <div class="line" style="animation-delay: 6.0s">
-        > Type a command to continue<span class="blink">_</span>
-    </div>
-
-    <div class="line" style="animation-delay: 7.0s">
-        <br><br>
-        <a href="index.html">Return to Main Site</a>
+    <!-- Input line -->
+    <div class="line" id="input-line">
+        > <input id="cmd" autocomplete="off" autofocus />
+        <span class="blink">_</span>
     </div>
 
 </div>
+
+<script>
+    const terminal = document.getElementById("terminal");
+    const cmdInput = document.getElementById("cmd");
+
+    function print(text) {
+        const line = document.createElement("div");
+        line.className = "line";
+        line.textContent = text;
+        terminal.insertBefore(line, document.getElementById("input-line"));
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function handleCommand(command) {
+        switch (command.toLowerCase()) {
+
+            case "help":
+                print("> Available commands:");
+                print("   help     — list commands");
+                print("   status   — system overview");
+                print("   persona  — active behavioral profile");
+                print("   uplink   — return to main site");
+                print("   holiday  — ???");
+                break;
+
+            case "status":
+                print("> SYSTEM STATUS:");
+                print("   MotionGraph Engine: nominal");
+                print("   PersonaLayer: stable");
+                print("   SensorMesh: passive mode");
+                print("   ReflexPack: idle");
+                print("   Sandbox Autonomy: engaged");
+                break;
+
+            case "persona":
+                print("> ACTIVE PERSONA PROFILE:");
+                print("   Profile: NeutralHost");
+                print("   Warmth: 0.7");
+                print("   Responsiveness: 0.9");
+                print("   Behavioral Notes: Optimized for operator onboarding.");
+                break;
+
+            case "uplink":
+                print("> Opening uplink channel...");
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 800);
+                break;
+
+            case "holiday":
+                print("> Establishing encrypted seasonal uplink...");
+                setTimeout(() => {
+                    print("> Transmission received:");
+                    print("   \"Wishing you warmth, peace, and a moment of wonder this holiday season.");
+                    print("    May the year ahead bring clarity, creativity, and connection.\"");
+                    print("   — Autonomous Systems Research Group");
+                }, 800);
+                break;
+
+            default:
+                print("> Unknown command. Type 'help' for options.");
+        }
+    }
+
+    cmdInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            const command = cmdInput.value.trim();
+            print("> " + command);
+            cmdInput.value = "";
+            handleCommand(command);
+        }
+    });
+</script>
+
 </body>
 </html>
