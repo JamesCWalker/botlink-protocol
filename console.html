@@ -96,7 +96,10 @@
 
     function handleCommand(command) {
         switch (command.toLowerCase()) {
-
+            case "briefing":
+            print("> CLASSIFIED Operator Briefing available for download:");
+            print("   https://github.com/JamesCWalker/botlink-protocol/raw/main/CLASSIFIED%20OPERATOR%20BRIEFING.txt");
+            break;
             case "help":
                 print("> Available commands:");
                 print("   help     — list commands");
@@ -104,6 +107,7 @@
                 print("   persona  — active behavioral profile");
                 print("   uplink   — return to main site");
                 print("   holiday  — ???");
+                print("   briefing — download classified operator briefing");
                 break;
 
             case "status":
