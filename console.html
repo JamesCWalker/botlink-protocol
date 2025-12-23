@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOTLINK PROTOCOL — Operator Console</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0d0d0d;
+            color: #00ffcc;
+            font-family: Consolas, monospace;
+            font-size: 1rem;
+        }
+
+        .screen {
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .line {
+            margin: 8px 0;
+            opacity: 0;
+            animation: fadeIn 0.6s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        a {
+            color: #00ffcc;
+            text-decoration: underline;
+        }
+
+        .blink {
+            animation: blink 1s step-start infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+<div class="screen">
+
+    <div class="line" style="animation-delay: 0.2s">> INITIALIZING BOTLINK PROTOCOL [v0.0.1-prealpha]</div>
+    <div class="line" style="animation-delay: 0.6s">> Establishing secure operator channel...</div>
+    <div class="line" style="animation-delay: 1.0s">> Handshake: OK</div>
+    <div class="line" style="animation-delay: 1.4s">> Authentication: BYPASS (Preview Mode)</div>
+    <div class="line" style="animation-delay: 1.8s">> Loading subsystems...</div>
+
+    <div class="line" style="animation-delay: 2.4s">   - MotionGraph Engine: READY</div>
+    <div class="line" style="animation-delay: 2.8s">   - PersonaLayer: READY</div>
+    <div class="line" style="animation-delay: 3.2s">   - SensorMesh: READY</div>
+    <div class="line" style="animation-delay: 3.6s">   - ReflexPack: READY</div>
+
+    <div class="line" style="animation-delay: 4.2s">> Operator console online.</div>
+    <div class="line" style="animation-delay: 4.6s">> Status: SANDBOX MODE (No hardware connected)</div>
+
+    <div class="line" style="animation-delay: 5.2s">
+        > Available Commands:
+        <br>   help — list commands
+        <br>   status — system overview
+        <br>   persona — active behavioral profile
+        <br>   uplink — return to main site
+    </div>
+
+    <div class="line" style="animation-delay: 6.0s">
+        > Type a command to continue<span class="blink">_</span>
+    </div>
+
+    <div class="line" style="animation-delay: 7.0s">
+        <br><br>
+        <a href="index.html">Return to Main Site</a>
+    </div>
+
+</div>
+</body>
+</html>
